@@ -11,6 +11,7 @@ from user_login_input import login
 driver = webdriver.Chrome()
 driver.get("https://wallapop.com/app/catalog/published")
 
+#Let user login to the catalog
 login()
 
 time.sleep(10)
