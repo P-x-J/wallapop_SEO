@@ -1,5 +1,6 @@
 import sys
 import time
+import pyautogui
 
 from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
@@ -25,7 +26,10 @@ while True:
         time.sleep(10)
 
         # Enter editor mode
-        edit_button = driver.find_element(By.CLASS_NAME, "walla-button__button walla-button__button--full-width walla-button__button--medium walla-button__button--primary")
+        edit_button = wait.until(
+        EC.element_to_be_clickable((By.XPATH, "/html/body/div[2]/main/div/div[2]/div/aside/section/div[3]/div/div/walla-button[1]"))
+        )
+        driver.execute_script("arguments[0].scrollIntoView(true);", edit_button)
         edit_button.click()
         time.sleep(7)
 
@@ -33,7 +37,7 @@ while True:
         description = wait.until(EC.presence_of_element_located((By.ID, "description")))
         append_dot(driver, description)
 
-        refresh_button = driver.find_element(By.CLASS_NAME, "walla-button__button walla-button__button--full-width walla-button__button--medium walla-button__button--primary")
+        refresh_button = driver.find_element(By.CSS_SELECTOR, "walla-button__button walla-button__button--full-width walla-button__button--medium walla-button__button--primary")
         time.sleep(5)
 
 
@@ -42,7 +46,7 @@ while True:
         time.sleep(10)
 
         # Enter editor mode
-        edit_button = driver.find_element(By.CLASS_NAME, "walla-button__button walla-button__button--full-width walla-button__button--medium walla-button__button--primary")
+        edit_button = wait.until(EC.element_to_be_clickable((By.XPATH, "//button[@role='button' and .//span[contains(text(), 'Editar')]]")))
         edit_button.click()
         time.sleep(7)
 
