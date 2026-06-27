@@ -1,6 +1,6 @@
 import sys
 import time
-import pyautogui
+
 
 from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
@@ -29,18 +29,22 @@ while True:
         driver.execute_script("document.querySelectorAll('[inert]').forEach(el => el.remove());")
         time.sleep(1)
 
+        print("looking for element")
         # Wait for the button to be present
         edit_button = wait.until(
-            EC.presence_of_element_located((By.XPATH, "/html/body/div[2]/main/div/div[2]/div/aside/section/div[3]/div/div/walla-button[1]"))
+            EC.element_to_be_clickable((By.XPATH, "/html/body/div[2]/main/div/div[2]/div/aside/section/div[3]/div/div/walla-button[1]"))
         )
         time.sleep(5)
-        edit_button.click()
-        
+        print("scrollin")
         # Scroll and click
         driver.execute_script("""
             arguments[0].scrollIntoView({behavior: 'smooth', block: 'center'});
-            arguments[0].click();
-        """, edit_button)
+            """, edit_button)
+        time.sleep(2)
+
+
+        print("clikin")
+        edit_button.click()
         time.sleep(7)
 
         # Added a dot to the description
