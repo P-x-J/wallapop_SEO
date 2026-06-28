@@ -26,7 +26,10 @@ time_interval = time_interval_verification()
 while True:
     print("STARTING ADDING DOT LOOPS")
     add_dot_loop(items_list_link, wait, driver)
+    print(f"Waiting {time_interval} minutes")
+    time.sleep(int(time_interval*60))
     print("START REMOVING DOT LOOPS")
     removing_dot_loop(items_list_link, wait, driver)
     print(f"Waiting {time_interval} minutes")
     time.sleep(int(time_interval*60))
+    
